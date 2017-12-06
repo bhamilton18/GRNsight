@@ -76,19 +76,19 @@
             };
 
             var getJasparInfo = function (geneSymbol) {
-                return window.fetch("http://jaspar.genereg.net/api/v1/matrix/?tax_id=4932&search=" + geneSymbol, {
+                return window.fetch("http://jaspar.genereg.net/api/v1/matrix/?tax_id=4932&format=json&search=" + geneSymbol, {
                     mode: "no-cors",
-                }).then(function (data) {
-                    return (data.count === 0 ?
-                        null :
-                        window.fetch("http://jaspar.genereg.net/api/v1/matrix/" + data.results[0].matrix_id, {
-                            mode: "no-cors",
-                        })
-                    );
+                }).then(function (response) {
+                    return response;
+                    // return (data.count === 0 ?
+                    //     null :
+                    //     window.fetch("http://jaspar.genereg.net/api/v1/matrix/" + data.results[0].matrix_id, {
+                    //         mode: "no-cors",
+                    //     })
+                    // );
                 });
             };
 
-            // change if any preprocessing needs to be done on the data before being given to the application
             var filterData = function (uniprotInfo, ncbiInfo, yeastmineInfo, ensemblInfo, jasparInfo) {
                 return {
                     jaspar: {
@@ -152,13 +152,14 @@
 
             // TODO: Error Handling, Mock Testing, Data filtering
             return $.when(
-                getUniProtInfo(symbol),
-                getNCBIInfo(symbol),
-                getYeastMineInfo(symbol),
-                getEnsemblInfo(symbol),
+                // getUniProtInfo(symbol),
+                // getNCBIInfo(symbol),
+                // getYeastMineInfo(symbol),
+                // getEnsemblInfo(symbol),
                 getJasparInfo(symbol)
-            ).then(function (uniprotInfo, ncbiInfo, yeastmineInfo, ensemblInfo, jasparInfo) {
-                return filterData(uniprotInfo, ncbiInfo, yeastmineInfo, ensemblInfo, jasparInfo);
+            ).then(function (jasparInfo) {
+                // return filterData(uniprotInfo, ncbiInfo, yeastmineInfo, ensemblInfo, jasparInfo);
+                return jasparInfo;
             });
         }
     };

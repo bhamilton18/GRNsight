@@ -11,5 +11,5 @@
 
     api.getGeneInformation(obj.symbol).done(function (gene) {
         console.log(gene);
-    })
+    });
 })();
