@@ -44,7 +44,6 @@
             };
 
             var getYeastMineInfo = function (geneSymbol) {
-<<<<<<< HEAD
                 // return $.get({
                 //     url: "https://yeastmine.yeastgenome.org/yeastmine/service/data/Gene?symbol=" + geneSymbol,
                 //     dataType: "json",
@@ -56,20 +55,6 @@
                 //        // TODO: This part
                 //     });
                 // });
-=======
-                return $.get({
-                    url: "https://yeastmine.yeastgenome.org/yeastmine/service/data/Gene?symbol=" + geneSymbol,
-                    dataType: "json",
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader("content-type", "application/json");
-                    },
-                }).then(function (data) {
-                    console.log(data.results[0]);
-                    return $.get({
-                       // TODO: This part
-                    });
-                });
->>>>>>> 55ef1410998394fe95b26825be6c29d26771c191
             };
 
             var getEnsemblInfo = function (geneSymbol) {
